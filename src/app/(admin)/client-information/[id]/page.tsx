@@ -1,10 +1,6 @@
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import { Metadata } from "next";
-import React from "react";
 import ClientDetail from "@/components/client-information/ClientDetail";
-
-import BasicTableOne from "@/components/tables/BasicTableOne";
-
 
 export const metadata: Metadata = {
     title: "Astound AI | Client Detail",
