@@ -6,11 +6,15 @@ export const metadata: Metadata = {
     title: "Astound AI | Client Detail",
 };
 
-export default async function ClientDetailPage({
-    params,
-}: {
-    params: { id: string };
-}) {
+type PageProps = {
+    params: Promise<{
+        id: string;
+    }>;
+};
+
+export default async function ClientDetailPage({ params }: PageProps) {
+    const { id } = await params;
+
     return (
         <div>
             <PageBreadcrumb pageTitle="Client Detail" />
@@ -18,7 +22,7 @@ export default async function ClientDetailPage({
             <div className="grid grid-cols-12 gap-4 md:gap-6">
                 <div className="col-span-12">
                     <div className="space-y-6">
-                        <ClientDetail clientId={params.id} />
+                        <ClientDetail clientId={id} />
                     </div>
                 </div>
             </div>
