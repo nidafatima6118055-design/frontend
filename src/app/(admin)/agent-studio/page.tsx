@@ -4,7 +4,7 @@ import { defaultAgentConfig } from "@/constants/defaultAgentConfig";
 import type { FullAgentConfig } from "@/lib/types/agentConfig";
 import LLMSettingsTab from "@/components/agent-studio/LLMSettingsTab";
 import VoiceSettingsTab from "@/components/agent-studio/VoiceSettingsTab";
-import TranscriberSettingsTab from "@/components/agent-studio/TranscriberSettingsTab";
+// import TranscriberSettingsTab from "@/components/agent-studio/TranscriberSettingsTab";
 
 export default function AgentStudioPage() {
     const [agentConfig, setAgentConfig] = useState<FullAgentConfig>(defaultAgentConfig);
@@ -42,9 +42,9 @@ export default function AgentStudioPage() {
                     {activeTab === "voice" && (
                         <VoiceSettingsTab config={agentConfig} setConfig={setAgentConfig} />
                     )}
-                    {activeTab === "transcriber" && (
+                    {/* {activeTab === "transcriber" && (
                         <TranscriberSettingsTab config={agentConfig} setConfig={setAgentConfig} />
-                    )}
+                    )} */}
                 </div>
             </div>
 
