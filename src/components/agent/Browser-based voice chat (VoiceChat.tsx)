@@ -1,0 +1,2 @@
+Browser-based voice chat (VoiceChat.tsx) via WebSocket, with transcription display.
+The server (quickstart_server.py) orchestrates calls and voice interactions using WebSockets, leveraging Deepgram, OpenAI, and ElevenLabs, as you observed.

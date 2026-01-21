@@ -1,0 +1,108 @@
+import { FullAgentConfig } from "@/lib/types/agentConfig";
+
+export const defaultAgentConfig: FullAgentConfig = {
+    agent_config: {
+        agent_name: "Chloe",
+        agent_type: "voice_web",
+        agent_welcome_message: "Hello Summer! How are you doing",
+        assistant_status: "seeding",
+        tasks: [
+            {
+                tools_config: {
+                    llm_agent: {
+                        agent_flow_type: "streaming",
+                        agent_type: "simple_llm_agent",
+                        llm_config: {
+                            model: "gpt-4o-mini",
+                            max_tokens: 200,
+                            family: "openai",
+                            temperature: 0.1,
+                            request_json: true,
+                            stop: null,
+                            top_k: 0,
+                            top_p: 0.9,
+                            min_p: 0.1,
+                            frequency_penalty: 0.0,
+                            presence_penalty: 0.0,
+                            provider: "openai",
+                            base_url: null,
+                            routes: null,
+                            agent_flow_type: "streaming",
+                        },
+                    },
+                    synthesizer: {
+                        provider: "elevenlabs",
+                        provider_config: {
+                            voice: "George",
+                            voice_id: "JBFqnCBsd6RMkjVDRZzb",
+                            model: "eleven_turbo_v2_5",
+                            temperature: 0.5,
+                            similarity_boost: 0.5,
+                            speed: 1.0,
+                            use_mulaw: false,
+                            audio_format: "pcm_16000",
+                        },
+                        stream: true,
+                        buffer_size: 40,
+                        audio_format: "pcm_16000",
+                        sampling_rate: 16000,
+                        caching: true,
+                    },
+                    transcriber: {
+                        model: "nova-2",
+                        language: "en",
+                        stream: true,
+                        sampling_rate: 16000,
+                        encoding: "linear16",
+                        endpointing: 500,
+                        keywords: null,
+                        task: "transcribe",
+                        provider: "deepgram",
+                    },
+                    input: {
+                        provider: "default",
+                        format: "pcm_16000",
+                        sampling_rate: 16000,
+                    },
+                    output: {
+                        provider: "default",
+                        format: "pcm_16000",
+                        sampling_rate: 16000,
+                    },
+                    api_tools: null,
+                },
+                toolchain: {
+                    execution: "parallel",
+                    pipelines: [["transcriber", "llm", "synthesizer"]],
+                },
+                task_type: "conversation",
+                task_config: {
+                    optimize_latency: true,
+                    hangup_after_silence: 60,
+                    incremental_delay: 900,
+                    number_of_words_for_interruption: 1,
+                    interruption_backoff_period: 100,
+                    hangup_after_LLMCall: false,
+                    call_cancellation_prompt: null,
+                    backchanneling: false,
+                    backchanneling_message_gap: 5,
+                    backchanneling_start_delay: 5,
+                    ambient_noise: false,
+                    ambient_noise_track: "convention_hall",
+                    call_terminate: 90,
+                    use_fillers: false,
+                    trigger_user_online_message_after: 30,
+                    check_user_online_message: "Hey, are you still there?",
+                    check_if_user_online: true,
+                    generate_precise_transcript: false,
+                },
+            },
+        ],
+    },
+    agent_prompts: {
+        task_1: {
+            system_prompt:
+                "You are Waqas, a helpful and knowledgeable software consultant specializing in SaaS app development and technology solutions...",
+        },
+    },
+};

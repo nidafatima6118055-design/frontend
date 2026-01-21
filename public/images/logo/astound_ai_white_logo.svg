@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="150" height="40" viewBox="0 0 150 40" fill="none">
+  <!-- Bot Head Background (smaller, aligned with text height) -->
+  <rect x="5" y="12" width="24" height="16" rx="4" fill="#4F46E5"/>
+  
+  <!-- Bot Antennas (white now) -->
+  <line x1="11" y1="12" x2="9" y2="8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="23" y1="12" x2="25" y2="8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="9" cy="8" r="1.5" fill="white"/>
+  <circle cx="25" cy="8" r="1.5" fill="white"/>
+  
+  <!-- Bot Eyes -->
+  <circle cx="14" cy="20" r="1.5" fill="white"/>
+  <circle cx="20" cy="20" r="1.5" fill="white"/>
+  
+  <!-- Bot Mouth -->
+  <rect x="14" y="23" width="6" height="1.2" rx="0.6" fill="white"/>
+  
+  <!-- Text -->
+  <text x="38" y="25" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="white">
+    Astound <tspan fill="white">AI</tspan>
+  </text>
+</svg>
