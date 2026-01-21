@@ -10,7 +10,11 @@ export const metadata: Metadata = {
     title: "Astound AI | Client Detail",
 };
 
-export default function ClientDetailPage({ params }: { params: { id: string } }) {
+export default async function ClientDetailPage({
+    params,
+}: {
+    params: { id: string };
+}) {
     return (
         <div>
             <PageBreadcrumb pageTitle="Client Detail" />
