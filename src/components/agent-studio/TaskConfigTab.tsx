@@ -31,14 +31,23 @@ export default function TaskConfigTab({ config, setConfig }: Props) {
 
     // 🧱 Utility: Ensure structure exists (just like ensureLLMExists)
     const ensureTaskExists = (cfg: FullAgentConfig) => {
-        const newCfg = structuredClone(cfg || {});
-        if (!newCfg.agent_config) newCfg.agent_config = {} as any;
-        if (!Array.isArray(newCfg.agent_config.tasks)) newCfg.agent_config.tasks = [{}];
-        if (!newCfg.agent_config.tasks[0]) newCfg.agent_config.tasks[0] = {} as any;
+        const newCfg = structuredClone(cfg);
+
+        if (!newCfg.agent_config)
+            newCfg.agent_config = {} as any;
+
+        if (!Array.isArray(newCfg.agent_config.tasks))
+            newCfg.agent_config.tasks = [] as any;
+
+        if (!newCfg.agent_config.tasks[0])
+            newCfg.agent_config.tasks[0] = {} as any;
+
         if (!newCfg.agent_config.tasks[0].task_config)
             newCfg.agent_config.tasks[0].task_config = { ...defaultTaskConfig };
+
         return newCfg;
     };
+
 
     // 🧠 Merge defaults into task config (only missing fields)
     useEffect(() => {
