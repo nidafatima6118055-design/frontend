@@ -35,20 +35,26 @@ export default function LLMConfigTab({ config, setConfig }: Props) {
 
         if (!task.tools_config.llm_agent.llm_config) {
             task.tools_config.llm_agent.llm_config = {
-                provider: "openai",
-                model: "gpt-4o-mini",
-                temperature: 0.3,
-                top_p: 0.9,
-                frequency_penalty: 0.0,
-                presence_penalty: 0.0,
-                max_tokens: 200,
-                request_json: true,
-                base_url: "",
-                family: "openai",
-                top_k: 40,          // ✅ REQUIRED
-                min_p: 0.05,        // ✅ REQUIRED
+              provider: "openai",
+              model: "gpt-4o-mini",
+          
+              temperature: 0.3,
+              top_p: 0.9,
+              top_k: 40,
+              min_p: 0.05,
+          
+              frequency_penalty: 0.0,
+              presence_penalty: 0.0,
+              max_tokens: 200,
+          
+              request_json: true,
+              base_url: "",
+              family: "openai",
+          
+              agent_flow_type: "streaming", // ✅ REQUIRED (THIS WAS MISSING)
             };
-        }
+          }
+          
 
         return newCfg;
     };
