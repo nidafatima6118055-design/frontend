@@ -1,15 +1,21 @@
 "use client";
-import { useAuthStore } from "@/store/auth";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
-export default function FullWidthPagesLayout({ children }: { children: React.ReactNode }) {
+import type { ReactNode } from "react";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/store/auth";
+
+export default function FullWidthPagesLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const { access } = useAuthStore();
   const router = useRouter();
 
   useEffect(() => {
     if (access) {
-      router.replace("/"); // redirect logged-in users to dashboard
+      router.replace("/");
     }
   }, [access, router]);
 
