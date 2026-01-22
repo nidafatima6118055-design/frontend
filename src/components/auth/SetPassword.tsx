@@ -151,34 +151,4 @@ export default function SetPassword() {
 
 
 
-
-
-
-
-
-    return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-50">
-            <form
-                onSubmit={handleSubmit}
-                className="w-full max-w-sm p-6 bg-white rounded-2xl shadow-md"
-            >
-                <h2 className="text-xl font-semibold mb-4 text-center">Set Your Password</h2>
-                <input
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPasswordValue(e.target.value)}
-                    placeholder="Enter new password"
-                    className="w-full border rounded-lg px-3 py-2 mb-4"
-                />
-                <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full bg-blue-600 text-white rounded-lg py-2 hover:bg-blue-700 disabled:opacity-50"
-                >
-                    {loading ? "Saving..." : "Set Password"}
-                </button>
-            </form>
-        </div>
-    );
 }
