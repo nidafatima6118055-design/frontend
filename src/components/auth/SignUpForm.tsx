@@ -59,7 +59,7 @@ export default function SignUpForm() {
       await register(username, email, password);
 
       // after successful registration → login immediately
-      const res = await login(email, password);
+      const res = await login(email, password, false);
 
       const { user, access, refresh } = res.data;
 
