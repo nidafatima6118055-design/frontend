@@ -25,8 +25,8 @@ export default function LLMConfigTab({ config, setConfig }: Props) {
         if (!task.tools_config.llm_agent) task.tools_config.llm_agent = {} as any;
 
 
-        if (!task.tools_config.llm_agent.agent_flow_type)
-            task.tools_config.llm_agent.agent_flow_type = "streaming";
+        // if (!task.tools_config.llm_agent.agent_flow_type)
+        //     task.tools_config.llm_agent.agent_flow_type = "streaming";
 
         if (!task.tools_config.llm_agent.routes)
             task.tools_config.llm_agent.routes = null;
@@ -45,6 +45,8 @@ export default function LLMConfigTab({ config, setConfig }: Props) {
                 request_json: true,
                 base_url: "",
                 family: "openai",
+                top_k: 40,          // ✅ REQUIRED
+                min_p: 0.05,        // ✅ REQUIRED
             };
         }
 
