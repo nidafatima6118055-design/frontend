@@ -48,6 +48,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     loginSource: null,
     isLoggedin: false,
     _hydrating: false,
+    access: null,
   
     /** 🧠 Getters */
     getUser: () => get().user,
@@ -68,6 +69,16 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   
       console.log("🔐 Auth user set:", user);
     },
+
+    /** 🔑 Set access token */
+    setAccess: (token) => {
+      set({ access: token });
+      if (token) {
+        Cookies.set("access", token, { sameSite: "Lax", path: "/" });
+      } else {
+        Cookies.remove("access", { path: "/" });
+      }
+    },
   
     /** 🧹 Clear all auth-related state and cookies */
     clearAuth: () => {
@@ -78,7 +89,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         isLoggedin: false,
       });
   
-      const opts = { path: "/", sameSite: "Lax" };
+      const opts = { path: "/" };
       ["user", "role", "access", "refresh"].forEach((k) => Cookies.remove(k, opts));
   
       console.log("🚪 Auth cleared.");
@@ -114,7 +125,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   
         // No user returned
         set({ user: null, hydrated: true, isLoggedin: false, _hydrating: false });
-      } catch (err) {
+      } catch (err: any) {
         console.warn("⚠️ Auth hydration failed:", err?.response?.data || err);
         const opts = { path: "/" };
         ["user", "role", "access", "refresh"].forEach((k) => Cookies.remove(k, opts));
