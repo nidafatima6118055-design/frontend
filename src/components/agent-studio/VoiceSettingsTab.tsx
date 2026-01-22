@@ -6,22 +6,46 @@ type Props = {
     setConfig: React.Dispatch<React.SetStateAction<FullAgentConfig>>;
 };
 
+
+function setField<T, K extends keyof T>(
+    target: T,
+    key: K,
+    value: T[K]
+) {
+    target[key] = value;
+}
+
+
+
 export default function VoiceSettingsTab({ config, setConfig }: Props) {
     const synth = config.agent_config.tasks[0].tools_config.synthesizer;
     const voiceConfig = synth.provider_config;
 
-    const updateField = (key: keyof typeof voiceConfig, value: any) => {
+    const updateField = <K extends keyof typeof voiceConfig>(
+        key: K,
+        value: (typeof voiceConfig)[K]
+    ) => {
         setConfig((prev) => {
             const newConfig = structuredClone(prev);
-            newConfig.agent_config.tasks[0].tools_config.synthesizer.provider_config[key] = value;
+            const providerConfig =
+                newConfig.agent_config.tasks[0].tools_config.synthesizer.provider_config;
+
+            setField(providerConfig, key, value);
             return newConfig;
         });
     };
 
-    const updateSynthField = (key: keyof typeof synth, value: any) => {
+
+    const updateSynthField = <K extends keyof typeof synth>(
+        key: K,
+        value: (typeof synth)[K]
+    ) => {
         setConfig((prev) => {
             const newConfig = structuredClone(prev);
-            newConfig.agent_config.tasks[0].tools_config.synthesizer[key] = value;
+            const synthesizer =
+                newConfig.agent_config.tasks[0].tools_config.synthesizer;
+
+            setField(synthesizer, key, value);
             return newConfig;
         });
     };
