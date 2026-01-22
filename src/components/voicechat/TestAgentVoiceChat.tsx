@@ -99,6 +99,10 @@ export default function TestAgentVoiceChat({ agentId, inlineConfig }: TestAgentV
       alert("Please select a phone number first");
       return;
     }
+    if (!agentId) {
+      alert("Agent ID is required");
+      return;
+    }
     setIsAssigning(true);
     try {
       const res = await assignNumberToAgent(agentId, selectedNumber);
@@ -120,6 +124,10 @@ export default function TestAgentVoiceChat({ agentId, inlineConfig }: TestAgentV
   // 🔁 Unassign number
   async function handleUnassign() {
     if (!assignedNumber) return;
+    if (!agentId) {
+      alert("Agent ID is required");
+      return;
+    }
     setIsAssigning(true);
     try {
       await unassignNumberFromAgent(agentId, assignedNumber);
