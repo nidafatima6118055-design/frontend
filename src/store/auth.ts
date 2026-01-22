@@ -19,7 +19,7 @@ interface AuthState {
     loginSource: string | null;
     isLoggedin: boolean;
     _hydrating?: boolean;
-  
+    access: string | null;
     /** 🧠 Getters */
     getUser: () => any;
     getIsLoggedIn: () => boolean;
@@ -29,6 +29,7 @@ interface AuthState {
     clearAuth: () => void;
     hydrateUser: (force?: boolean) => Promise<void>;
     logoutUser: () => Promise<void>;
+    setAccess: (token: string | null) => void;
 }
 
 
