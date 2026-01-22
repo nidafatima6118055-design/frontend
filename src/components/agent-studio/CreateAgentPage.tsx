@@ -114,7 +114,8 @@ export default function CreateAgentPage({ existingAgent }: Props) {
 
             if (isEditMode && existingAgent?.bolna_agent_id) {
                 // 🧩 Update existing agent
-                await updateAgent(existingAgent.bolna_agent_id, payload);
+                // await updateAgent(existingAgent.bolna_agent_id, payload);
+                await updateAgent(existingAgent.bolna_agent_id);
                 alert("✅ Agent updated successfully!");
             } else {
                 // 🆕 Create new agent
