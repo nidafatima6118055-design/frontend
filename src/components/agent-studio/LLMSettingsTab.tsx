@@ -9,13 +9,13 @@ type Props = {
 export default function LLMSettingsTab({ config, setConfig }: Props) {
     const llm = config.agent_config.tasks[0].tools_config.llm_agent.llm_config;
 
-    const updateFieldold = (key: keyof typeof llm, value: any) => {
-        setConfig((prev) => {
-            const newConfig = structuredClone(prev);
-            newConfig.agent_config.tasks[0].tools_config.llm_agent.llm_config[key] = value;
-            return newConfig;
-        });
-    };
+    // const updateFieldold = (key: keyof typeof llm, value: any) => {
+    //     setConfig((prev) => {
+    //         const newConfig = structuredClone(prev);
+    //         newConfig.agent_config.tasks[0].tools_config.llm_agent.llm_config[key] = value;
+    //         return newConfig;
+    //     });
+    // };
 
 
     const updateField = <K extends keyof LLMConfig>(
