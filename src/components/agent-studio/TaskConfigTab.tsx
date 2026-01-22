@@ -55,13 +55,17 @@ export default function TaskConfigTab({ config, setConfig }: Props) {
             const newCfg = ensureTaskExists(prev);
             const taskCfg = newCfg.agent_config.tasks[0].task_config;
 
-            for (const [key, value] of Object.entries(defaultTaskConfig)) {
-                if (taskCfg[key] === undefined) taskCfg[key] = value;
-            }
+            (Object.keys(defaultTaskConfig) as (keyof typeof defaultTaskConfig)[])
+                .forEach((key) => {
+                    if (taskCfg[key] === undefined) {
+                        taskCfg[key] = defaultTaskConfig[key];
+                    }
+                });
 
             return newCfg;
         });
     }, [setConfig]);
+
 
     const safeCfg = ensureTaskExists(config);
     const task = safeCfg.agent_config.tasks[0].task_config;
