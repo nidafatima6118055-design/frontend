@@ -1,5 +1,5 @@
 "use client";
-import { FullAgentConfig } from "@/lib/types/agentConfig";
+import { FullAgentConfig, LLMConfig } from "@/lib/types/agentConfig";
 
 type Props = {
     config: FullAgentConfig;
@@ -9,7 +9,7 @@ type Props = {
 export default function LLMSettingsTab({ config, setConfig }: Props) {
     const llm = config.agent_config.tasks[0].tools_config.llm_agent.llm_config;
 
-    const updateField = (key: keyof typeof llm, value: any) => {
+    const updateFieldold = (key: keyof typeof llm, value: any) => {
         setConfig((prev) => {
             const newConfig = structuredClone(prev);
             newConfig.agent_config.tasks[0].tools_config.llm_agent.llm_config[key] = value;
@@ -17,6 +17,20 @@ export default function LLMSettingsTab({ config, setConfig }: Props) {
         });
     };
 
+
+    const updateField = <K extends keyof LLMConfig>(
+        key: K,
+        value: LLMConfig[K]
+    ) => {
+        setConfig((prev) => {
+            const newConfig = structuredClone(prev) as FullAgentConfig;
+
+            newConfig.agent_config.tasks[0].tools_config.llm_agent.llm_config[key] =
+                value;
+
+            return newConfig;
+        });
+    };
     return (
         <div className="space-y-4">
             <h3 className="font-semibold text-gray-800">LLM Configuration</h3>
