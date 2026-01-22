@@ -118,7 +118,7 @@ export default function ResetPassword() {
                       placeholder="Enter your password"
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
-                      require
+                      required
                     />
                     <span
                       onClick={() => setShowPassword(!showPassword)}

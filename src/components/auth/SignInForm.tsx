@@ -189,7 +189,7 @@ export default function SignInForm() {
                       placeholder="Enter your password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      require
+                      required
                     />
                     <span
                       onClick={() => setShowPassword(!showPassword)}
