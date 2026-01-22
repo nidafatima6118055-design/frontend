@@ -140,6 +140,7 @@ export async function createAgent(data: {
   name: string;
   description: string;
   system_prompt: string;
+  agent_prompts: string;
 }) {
   const res = await api.post(`${API_URL}/api/agents/`, data);
   return res.data;
@@ -149,9 +150,10 @@ export async function updateAgent(data: {
   name: string;
   description: string;
   system_prompt: string;
+  agent_prompts: string;
 }) {
-  // const res = await api.post(`${API_URL}/api/agents/`, data);
-  // return res.data;
+  const res = await api.post(`${API_URL}/api/agents/`, data);
+  return res.data;
 }
 
 export async function deleteAgent(id: string | number) {
