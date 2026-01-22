@@ -16,7 +16,7 @@ export default function LLMConfigTab({ config, setConfig }: Props) {
 
         if (!newCfg.agent_config) newCfg.agent_config = {} as any;
         if (!Array.isArray(newCfg.agent_config.tasks))
-            newCfg.agent_config.tasks = [{}];
+            newCfg.agent_config.tasks = [];
         if (!newCfg.agent_config.tasks[0]) newCfg.agent_config.tasks[0] = {} as any;
 
         const task = newCfg.agent_config.tasks[0];
