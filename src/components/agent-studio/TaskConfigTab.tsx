@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { FullAgentConfig } from "@/lib/types/agentConfig";
+import { TaskConfig } from "@/lib/types/agentConfig";
 
 type Props = {
     config: FullAgentConfig;
@@ -8,7 +9,9 @@ type Props = {
 };
 
 export default function TaskConfigTab({ config, setConfig }: Props) {
-    const defaultTaskConfig = {
+
+
+    const defaultTaskConfig: TaskConfig = {
         optimize_latency: true,
         hangup_after_silence: 60,
         incremental_delay: 900,
@@ -54,13 +57,12 @@ export default function TaskConfigTab({ config, setConfig }: Props) {
         setConfig((prev) => {
             const newCfg = ensureTaskExists(prev);
             const taskCfg = newCfg.agent_config.tasks[0].task_config;
-
-            (Object.keys(defaultTaskConfig) as (keyof typeof defaultTaskConfig)[])
-                .forEach((key) => {
-                    if (taskCfg[key] === undefined) {
-                        taskCfg[key] = defaultTaskConfig[key];
-                    }
-                });
+            
+            (Object.keys(defaultTaskConfig) as (keyof TaskConfig)[]).forEach((key) => {
+                if (taskCfg[key] === undefined) {
+                    taskCfg[key] = defaultTaskConfig[key];
+                }
+            });
 
             return newCfg;
         });
