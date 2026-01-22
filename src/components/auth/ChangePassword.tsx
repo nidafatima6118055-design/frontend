@@ -121,7 +121,7 @@ export default function ChangePassword() {
                       placeholder="Old password"
                       value={oldPassword}
                       onChange={(e) => setOldPassword(e.target.value)}
-                      require
+                      required
                     />
                     <span
                       onClick={() => setShowPassword(!showPassword)}
@@ -146,7 +146,7 @@ export default function ChangePassword() {
                       placeholder="New password"
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
-                      require
+                      required
                     />
                     <span
                       onClick={() => setShowPassword(!showPassword)}
