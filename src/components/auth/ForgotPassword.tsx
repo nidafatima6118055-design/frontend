@@ -5,7 +5,7 @@ import Label from "@/components/form/Label";
 import Button from "@/components/ui/button/Button";
 import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "@/icons";
 import Link from "next/link";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { login, me } from "@/lib/api/api";
