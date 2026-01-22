@@ -1,5 +1,6 @@
 "use client";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card/card";
+import { FC } from "react";
 
 import { Transaction } from "@/app/(admin)/billing/hooks/useBilling";
 
