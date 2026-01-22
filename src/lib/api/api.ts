@@ -1,6 +1,6 @@
 // src/lib/api/api.ts
 import api from "./axiosClient";
-
+import type { AgentConfig, AgentPrompts } from "../types/agentConfig"; // adjust path
 /**
  * Base API wrapper functions using Axios client (with token refresh interceptor)
  * The axiosClient automatically:
@@ -136,15 +136,31 @@ export async function getAgents() {
   }
 }
 
-export async function createAgent(data: {
+
+export type CreateAgentPayload = {
   name: string;
   description: string;
-  system_prompt: string;
-  agent_prompts: string;
-}) {
+  agent_config: AgentConfig;
+  agent_prompts: AgentPrompts;
+};
+
+
+
+export async function createAgent(data: CreateAgentPayload) {
   const res = await api.post(`${API_URL}/api/agents/`, data);
   return res.data;
 }
+
+
+// export async function createAgent(data: {
+//   name: string;
+//   description: string;
+//   system_prompt: string;
+//   agent_prompts: string;
+// }) {
+//   const res = await api.post(`${API_URL}/api/agents/`, data);
+//   return res.data;
+// }
 
 export async function updateAgent(data: {
   name: string;
