@@ -8,6 +8,19 @@ type Props = {
     setConfig: React.Dispatch<React.SetStateAction<FullAgentConfig>>;
 };
 
+
+
+function assignIfUndefined<T, K extends keyof T>(
+    target: T,
+    source: T,
+    key: K
+) {
+    if (target[key] === undefined) {
+        target[key] = source[key];
+    }
+}
+
+
 export default function TaskConfigTab({ config, setConfig }: Props) {
 
 
@@ -57,16 +70,15 @@ export default function TaskConfigTab({ config, setConfig }: Props) {
         setConfig((prev) => {
             const newCfg = ensureTaskExists(prev);
             const taskCfg = newCfg.agent_config.tasks[0].task_config;
-            
+
             (Object.keys(defaultTaskConfig) as (keyof TaskConfig)[]).forEach((key) => {
-                if (taskCfg[key] === undefined) {
-                    taskCfg[key] = defaultTaskConfig[key];
-                }
+                assignIfUndefined(taskCfg, defaultTaskConfig, key);
             });
 
             return newCfg;
         });
     }, [setConfig]);
+
 
 
     const safeCfg = ensureTaskExists(config);
