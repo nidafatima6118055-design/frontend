@@ -12,12 +12,20 @@ type Props = {
 export default function SynthesizerConfigTab({ config, setConfig }: Props) {
     // 🧱 Ensure synthesizer config structure always exists
     const ensureSynthExists = (cfg: FullAgentConfig) => {
-        const newCfg = structuredClone(cfg || {});
-        if (!newCfg.agent_config) newCfg.agent_config = {} as any;
-        if (!Array.isArray(newCfg.agent_config.tasks)) newCfg.agent_config.tasks = [{}];
-        if (!newCfg.agent_config.tasks[0]) newCfg.agent_config.tasks[0] = {} as any;
+        const newCfg = structuredClone(cfg);
+
+        if (!newCfg.agent_config)
+            newCfg.agent_config = {} as any;
+
+        if (!Array.isArray(newCfg.agent_config.tasks))
+            newCfg.agent_config.tasks = [] as any;
+
+        if (!newCfg.agent_config.tasks[0])
+            newCfg.agent_config.tasks[0] = {} as any;
+
         if (!newCfg.agent_config.tasks[0].tools_config)
             newCfg.agent_config.tasks[0].tools_config = {} as any;
+
         if (!newCfg.agent_config.tasks[0].tools_config.synthesizer) {
             newCfg.agent_config.tasks[0].tools_config.synthesizer = {
                 provider: "elevenlabs",
@@ -38,8 +46,10 @@ export default function SynthesizerConfigTab({ config, setConfig }: Props) {
                 caching: true,
             };
         }
+
         return newCfg;
     };
+
 
     // ✅ Always use a safe config
     const safeConfig = ensureSynthExists(config);
