@@ -176,10 +176,10 @@ export default function VoiceChat({ agentId }: VoiceChatProps) {
     };
 
     // Function to create WAV header
-    const createWavHeader = (dataLength, sampleRate = 16000, numChannels = 1, bitsPerSample = 16) => {
+    const createWavHeader = (dataLength: number, sampleRate: number = 16000, numChannels: number = 1, bitsPerSample: number = 16) => {
       const buffer = new ArrayBuffer(44);
       const view = new DataView(buffer);
-      const writeString = (str, offset) => {
+      const writeString = (str: string, offset: number) => {
         for (let i = 0; i < str.length; i++) {
           view.setUint8(offset + i, str.charCodeAt(i));
         }
@@ -254,7 +254,7 @@ export default function VoiceChat({ agentId }: VoiceChatProps) {
     const chunk = playbackQueueRef.current.shift();
     if (!chunk) return;
     try {
-      const audioBuffer = await audioContextRef.current.decodeAudioData(chunk.buffer);
+      const audioBuffer = await audioContextRef.current.decodeAudioData(chunk.buffer as ArrayBuffer);
       const source = audioContextRef.current.createBufferSource();
       source.buffer = audioBuffer;
       source.connect(audioContextRef.current.destination);
