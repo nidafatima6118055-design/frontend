@@ -61,14 +61,14 @@ export async function middleware(request: NextRequest) {
                     response.cookies.set("access", newAccess, {
                         path: "/",
                         httpOnly: true,
-                        sameSite: "Lax",
+                        sameSite: "lax",
                     });
                 }
                 if (newRefresh) {
                     response.cookies.set("refresh", newRefresh, {
                         path: "/",
                         httpOnly: true,
-                        sameSite: "Lax",
+                        sameSite: "lax",
                     });
                 }
 
