@@ -13,7 +13,7 @@ import TaskConfigTab from "./TaskConfigTab";
 import AgentConfigPreviewTab from "./AgentConfigPreviewTab";
 
 import { FullAgentConfig } from "@/lib/types/agentConfig";
-import { getAgents, createAgent, deleteAgent, getPhoneNumbers, assignNumberToAgent, unassignNumberFromAgent } from "@/lib/api/api";
+import { getAgents, createAgent, updateAgent, deleteAgent, getPhoneNumbers, assignNumberToAgent, unassignNumberFromAgent } from "@/lib/api/api";
 import { getPhones, assignPhone, unassignPhone } from "@/lib/api/phones";
 import { telephonyToWebConfig } from "../../utils/transformers"; // adjust path
 import { defaultTelephonyConfig } from "@/configs/defaultTelephonyConfig";
